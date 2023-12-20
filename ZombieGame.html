@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Unity Zombie Game - Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<li><a href="SenAccuCam.html">AccuCam</a></li>
+							<li class="active"><a href="ZombieGame.html">Unity</a></li>
+							<li><a href="TurnGame.html">Java Game</a></li>
+							<li><a href="WizardGame.html">Unreal</a></li>
+							<li><a href="SBattleBot.html">BattleBot</a></li>
+							<li><a href="VHDLCalc.html">VHDL Calc</a></li>
+							<li><a href="SCSVReader.html">CSV Reader</a></li>
+							
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/gunnar-orth-29a709187/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/GunnarOrth" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									
+									<h1>Zombie Game<br />
+									Unity C#</h1>
+									<iframe width="840" height="473" src="https://www.youtube.com/embed/fx5_qcSx4-8?si=hW4UOvuk5RRJxyGr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+								</header>
+								
+								<p>I created this project for my final junior design assignment. I always thought it would be interesting to create a game and I wanted to see how well I would do. For the time that I had, it ended up being more ambitious then I realized. However, I enjoyed learning how games are made and the design practices that come with it.</p>
+								<p>The game starts with you in the center of a small map. Zombies spawn during each round until they hit a spawn cap. Once they do, you must kill the current amount for more to spawn. Once you've killed all the zombies of that round, the next round will start with stronger zombies. Throughout the map there are other guns and perks you can buy to help you survive. By purchasing doors, an interactable, you can access areas to buy stronger weapons and perks to benefit you. In the bottom left of the HUD you will see a red bar for health and a blue bar for stamina. In the bottom middle, are the rounds. At the bottom right in green is your money, in yellow is the ammo currently in your gun, and in white is reserve ammo.</p>
+								<div class="image main"><img src="images/zombie2.png" alt="" /></div>
+								<p>Upon death you will see a death screen with how many zombies you killed, and what round you made it to.</p>
+								<hr />
+								<div class="image main"><img src="images/zombie3.png" alt="" /></div>
+								<p>Above is an image of the zombie game object with attack radius, effective attack radius, and hitbox.</p>
+								<hr />
+								<div class="image main"><img src="images/zombie4.png" alt="" /></div>
+								<p>Simple animation path for the zombie</p>
+								<hr />
+								<div class="image main"><img src="images/zombie7.png" alt="" /></div>
+								<p>Highlighted in blue is the walkable NavMesh that the NavMeshAgent, the zombie, can traverse.</p>
+								<hr />
+								<div class="image main"><img src="images/zombie8.png" alt="" /></div>
+								<p>An example of one of the in game purchases you can make.</p>
+								<hr />
+								<h2>Brief Overview of Each Script</h2>
+									
+										<div class="col-6 col-12-small">
+
+											
+											<ul>
+												<li>Spawner: Spawns zombies at certain spawn points. Will only spawn as many as are allowed to be pooled. After all zombies are killed in a round, it spawns new zombies with more health and changes the round.</li>
+												<li>Object Pool: Creates a list of objects at start time and sets them to false. If an object is able to be pooled it is called from this function. </li>
+												<li>Move Settings: Standard settings for movement. </li>
+												<li>IDamageable: Interface that makes the player and zombies damageable that is implemented in their respective classes. </li>
+												<li>Guns: Creates bullets at an attack point. Sets bullet damage. Moves camera based on recoil. Will only shoot if there are bullets in the magazine. Reloads if there is more ammo. Creates sounds on reload and shoot. </li>
+												<li>Custom Bullet: Keeps track of variables for the bullet. Destroys on collision with enemy and does damage to them. </li>
+												<li>Crosshair: Changes the size of the crosshair based on character movement and aiming down sights. </li>
+												<li>Attack Radius: Damages damageable game objects that are within the attack radius after a certain amount of time. </li>
+												<li>Player Move: Adds force to the player character controller based on key inputs. Regenerates and drains stamina based on running and jumping. </li>
+												<li>Player: Implements IDamageable. Takes damage and sets the game object to false on death (health goes to zero). Regenerates health. Shows player health bar. Shows game over screen with final round, total enemies killed and game over. </li>
+												<li>CamMove: Moves the camera up and down and rotates the player character controller left and right based on mouse input. </li>
+												<li>IInteractable: Interactable interface. Creates cost, prompt when interacting with an interactable, and function for interacting. </li>
+												<li>WeaponBuy: Implements IInteractable. Replaces values of gun script with new ones for specified guns. Destroys the current gun game object and creates a new one as the child of the camera. If already purchased, refills ammo for the gun. </li>
+												<li>Perks: Implements IInteractable. Changes a value within the gun script. </li>
+												<li>Door: Implements IInteractable. Sets game object to false. </li>
+												<li>Interactor: Checks if the interactor sphere overlaps with the interactable sphere and adds it to a interactable list if so. If the player has enough points and interacts with the interactable, it is called IInteractable class. </li>
+												<li>Enemy Movement: Makes the enemy follow the target. Revives zombie when respawned. </li>
+												<li>Enemy: Implements IDamageable. Sets the enemy attack radius. Rotates the zombie to look at the player. Takes damage and if the zombie health is below zero will despawn it and add kill count to the spawner. </li>
+												
+											</ul>
+
+										</div>
+
+								<hr />
+								<p>If I was able to go back and do it again, there are a few things I'd do differently and/or add. First I'd make the gun class an interface so I could more easily make unique weapons. I wouldn't use Unity terrain because it's difficult to work with, doesn't look good, and is a little glitchy in game. I would change any public variables to serialized fields simply because that is the “right” way to do it. I would change any gameObjects that are instantiated, created during runtime, to poolable objects, objects that are created pre runtime and set to inactive, in order to increase performance of the game and implement real software practices. And if I had more time I would create a start menu, pause menu, get better sounds, animations and objects so the game doesn't feel like a hodge podge of random free assets.</p>
+								
+								<p>To play the game yourself, download the zip file, extract all then go GameNew->My Project(7) and it should start.</p>
+								<ul class="actions special">
+									<li><a href="assets/GameZip.zip" download class="button large">Download Game</a></li>
+								</ul>
+
+								<ul class="actions special">
+									<li><a href="https://github.com/GunnarOrth/UnityZombieGame" class="button large">Github Page</a></li>
+								</ul>
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<section class="split contact">
+						<section class="alt">
+							<h3>Location</h3>
+							<p>Coopersburg, PA</p>
+						</section>
+						<section>
+							<h3>Phone</h3>
+							<p>(215) 485-2483</a></p>
+						</section>
+						<section>
+							<h3>Email</h3>
+							<p><a href = "mailto: gunorth7@gmail.com">gunorth7@gmail.com</a></p>
+						</section>
+						<section>
+							<h3>Social</h3>
+							<ul class="icons alt">
+								<li><a href="https://www.linkedin.com/in/gunnar-orth-29a709187/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+								<li><a href="https://github.com/GunnarOrth" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+							</ul>
+						</section>
+					</section>
+				</footer>
+
+				
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

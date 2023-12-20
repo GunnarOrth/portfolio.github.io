@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>AccuCam - Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<li class="active"><a href="SenAccuCam.html">AccuCam</a></li>
+							<li><a href="ZombieGame.html">Unity</a></li>
+							<li><a href="TurnGame.html">Java Game</a></li>
+							<li><a href="WizardGame.html">Unreal</a></li>
+							<li><a href="SBattleBot.html">BattleBot</a></li>
+							<li><a href="VHDLCalc.html">VHDL Calc</a></li>
+							<li><a href="SCSVReader.html">CSV Reader</a></li>
+							
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/gunnar-orth-29a709187/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/GunnarOrth" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									
+									<h1>Accu-Cam<br />
+									Senior Design Project</h1>
+									
+								</header>
+								<div class="image main"><img src="images/cam2.png" alt="" /></div>
+								<p>Accu-cam was my senior design project I created along with three other people. The camera is designed to be used for teachers and speakers in online meetings so they're able to move freely throughout their space to elevate online learning. Our design won first place as the best invention at the University of Pittsburgh's engineering design expo with all of the engineering majors showcasing their final projects. The camera will track the speaker by rotating a motor the camera is attached to. The laptop it's attached too will also create a transcript of what the speaker said. I was responsible for multithreading, video capture, natural language processing, and helped with the facial recognition and angle calculations. All of the programming was done in Python.</p>
+								
+								<hr />
+								<h2>Facial Recognition</h2>
+								<div class="image main"><img src="images/cam5.png" alt="" /></div>
+								<p> The Haar-Cascade classifier is optimal for simple and lightweight image classification and facial recognition. This classifier is optimal for a fully independent implementation of a CV model as it requires little processing power to operate effectively on a small device like the Raspberry Pi Zero. The baseline theory relies on applying simple masks images to identify features in the image. These masks slide across the image in order to find the assigned feature. This results in a fast and robust image recognition algorithm. In addition to this, we selected this classifier since it is natively trained in the OpenCV library. </p>
+								<hr />
+
+								<h2>Natural Language Processing</h2>
+								<div class="image main"><img src="images/cam15.png" alt="" /></div>
+								<p> The Google Speech Recognition API is a cloud-based NLP model trained on a variety of dialects and accents for English speakers. Aside from the technical specifications, this model was chosen for its large vocabulary and portability. With it being online, users require an internet connection. However, it is expected for them to have this since they will be using Web Conferencing software while it’s in use. It is also found in the “Speech Recognition” Python library, making it easily accessible. </p>
+								<hr />
+
+								<h2>Multithreading</h2>
+								<div class="image main"><img src="images/cam13.png" alt="" /></div>
+								<p> Multithreading was implemented to reduce latency and increase frame rate in the video feed. Using python's multithreading libraries, the natural language processing and facial recognition were put onto two seperate threads. Below is the measured latency and framerate of the Accu-cam with multithreading and without.</p>
+								<div class="image main"><img src="images/cam11.png" alt="" /></div>
+								<hr />
+								
+								<h2>Angle Calculation</h2>
+								<div class="image main"><img src="images/cam6.png" alt="" /></div>
+								<p> The algorithm for calculating the angle directive for the motor utilizes the found width and position from the Haar-Cascade Classifier. The algorithm also operates upon the calculated value for the focal length, using the following formula: f=d(wImage/wReal). With this, we can solve for the angle by applying the Pythagorean theorem with the inverse sine and then send the angle to the USB. Below is the calculated expected angle vs the actual angle of the camera rotation.</p>
+								<div class="image main"><img src="images/cam8.png" alt="" /></div>
+								<hr />
+
+								<h2>Motor</h2>
+								<div class="image main"><img src="images/cam16.png" alt="" /></div>
+								<p> The motor control module comprised three hardware components, such as the Rapsberry Pi 4, USB to serial adapter, and servo motor. In summary, the USB to serial adapter transmitted data serial from the user’s PC to the Raspberry Pi 4 which then processed the step angle to drive the servo motor.  </p>
+								<p> A micro servo motor (SG90) was found to be suitable hardware for control due to its closed loop system and inexpensive price.  This servo motor operated at a voltage ranging from 4.8 V to 6 V. In the final implemented design, the servo had a minimum and maximum sweep from 0º to 180º. As shown in Figure 4, the servo had three terminals for ground, power, and pulse width modulation (PWM). Both power and ground terminal were directly connected to a voltage regulator PCB which was powered by a 9V battery. The servo was controlled by GPIO pin 25 of the Raspberry Pi 4 which was connected to the PWM pin of the servo.   </p>
+								<div class="image main"><img src="images/cam7.png" alt="" /></div>
+								<hr />
+
+
+							
+								<ul class="actions special">
+									<li><a href="https://github.com/jereifej/AccCam" class="button large">Github Page</a></li>
+								</ul>
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<section class="split contact">
+						<section class="alt">
+							<h3>Location</h3>
+							<p>Coopersburg, PA</p>
+						</section>
+						<section>
+							<h3>Phone</h3>
+							<p>(215) 485-2483</a></p>
+						</section>
+						<section>
+							<h3>Email</h3>
+							<p><a href = "mailto: gunorth7@gmail.com">gunorth7@gmail.com</a></p>
+						</section>
+						<section>
+							<h3>Social</h3>
+							<ul class="icons alt">
+								<li><a href="https://www.linkedin.com/in/gunnar-orth-29a709187/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+								<li><a href="https://github.com/GunnarOrth" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+							</ul>
+						</section>
+					</section>
+				</footer>
+
+				
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
