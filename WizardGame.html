@@ -53,10 +53,91 @@
 									
 								</header>
 								<div class="image main"><img src="images/wizard1.jpg" alt="" /></div>
-								<p>In this page I will document my progress on a game made in unreal engine. My idea for the game is for it to be an open world action adventure game similar to the legend of zelda breath of the wild. However, I want to put a heavier focus on spells and potions the player can learn throughout their adventure to aid them throughout many different environments, puzzles, quests and NPC's they meet. Each spell is unique and can be used to solve puzzles and fight unique enemies the player will face. I would also like to implement some sort of multiplayer later on. This will be my most ambitious project yet so updates may take time. </p>
-								<ul class="actions special">
-									<li><a href="https://github.com/GunnarOrth/WizardGame" class="button large">Github Page</a></li>
-								</ul>
+								<p>	In this page I will document my progress on a game made in unreal engine. My idea for the game is for it to be an open world action adventure game similar to the legend of zelda breath of the wild. However, I want to put a heavier focus on spells and potions the player can learn throughout their adventure to aid them throughout many different environments, puzzles, quests and NPC's they meet. Each spell is unique and can be used to solve puzzles and fight unique enemies the player will face. I would also like to implement some sort of multiplayer later on. This will be my most ambitious project yet so updates may take time. </p>
+								<p>	As of now, I have created some basic prototypes of the most important parts to an action adventure game including, spells, inventory, AI, and interaction. All of the assets like animations, images, and models are free assets and are only placeholders to show how things work in the game, and will be changed later on. There is much more work that needs to be done but this progress gives me a good stepping stone to branch out into any area I will work on in the future.</p>
+								<hr />
+								<h2>Spells</h2>
+								<iframe width="560" height="315" src="https://www.youtube.com/embed/qeT1qybt6X4?si=l2wquK7n2ltA8ki2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+								<p>Spells are cast using Unreal Engines advanced input system. First, the spells are added to an array of spells in the third person characters construct event. Then, holding down right click, a user interface will show up that will highlight what section of the weapon wheel you are in. Once you are in the selected section of the wheel, moving outside of the wheel will allow you to access specific spells of that category of spells. Currently there are 8 sections and 8 spells within each section. One left click is pressed, it will spawn that spell actor from the array and call the spells event using a spell blueprint interface. Currently there are only two spells. One projectile that fires from the player and one line trace that draws a line to the center of the screen. These two spells will be the prototype for the majority of the other spells</p>
+								<div class="image main"><img src="images/WIzard2.png" alt="" /></div>
+								<p>BluePrint for creating a line trace from the camera to the center of the screen.</p>
+								<div class="image main"><img src="images/Wizard3.png" alt="" /></div>
+								<p>Components of the projectile spell.</p>
+								<div class="image main"><img src="images/Wizard4.png" alt="" /></div>
+								<p>Third Person Character's left click action that will spawn the desired actor and call its interface function.</p>
+								<div class="image main"><img src="images/Wizard5.png" alt="" /></div>
+								<p>Event that will open the weapon wheel and determine the distance of the mouse from the center of the screen. If the mouse is over 300 units away it will open the next weapon wheel.</p>
+								<div class="image main"><img src="images/Wizard6.png" alt="" /></div>
+								<p>The material used to create the weapon wheel image</p>
+								
+								<hr />
+								<h2>Tactical Abilities</h2>
+								<iframe width="560" height="315" src="https://www.youtube.com/embed/5y0rKox2lNQ?si=VMkeP7N8kYzzMJzy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+								<p>Tactical Equipment is somewhat similar to spells. They are also held in an array that will create the desired equipment actor based on what index is selected using the scroll wheel. However, tactical equipment is picked up and shown in the users inventory, or crafted later on. The tacticals also use a blueprint interface to execute their behavior. Using the scroll wheel or using a tactical will change the UI. Tacticals will be implemented later on to be things like bombs and health potions.</p>
+								<div class="image main"><img src="images/WizardTact.png" alt="" /></div>
+								<p>Third Person Character's Q event that will create the actor at the tactical socket in the character's mesh if there are any in the user's inventory. It will then call said actor's interface.</p>
+								<div class="image main"><img src="images/WizardTact2.png" alt="" /></div>
+								<p>EquipScroll will change the tactical selected and change the UI to show the amount of the tactical and which one is chosen.</p>
+
+								<hr />
+								<h2>Inventory & UI</h2>
+								<iframe width="560" height="315" src="https://www.youtube.com/embed/fenHseAaZd4?si=2mfILzWUZ_xh36C6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+								<p> The inventory can be opened using tab or the 'T' key. In the inventory UI there is a seperate widget for resources, which are items you can gather throughout the map but are only used to craft tactical equipment. The items widget will show you what tacticals you have and how many of them you have. You may also craft more of an item by clicking its button and it will remove those resources and add an item. These are the items you can access as tacticals. The armor widget displays what armor you have and what body part it is used for. By clicking on an armor pieces button you can equip it. The quests widget currently contains nothing but will show progress on quests. The spells widget also is not implemented but will be where you can level up spells so that you may cast them. When the inventory UI is constructed it will go through the inventory arrays and create child widgets and add them to there respective parents within the inventory UI.</p>
+								<div class="image main"><img src="images/WizardInv.png" alt="" /></div>
+								<p>Event in third person character that will open or close the inventory based on its current status.</p>
+								<div class="image main"><img src="images/WizardInv6.png" alt="" /></div>
+								<p>Construction event of the inventory widget that clears the children if they were already created and creates them again with new game data. The integer switch case determines what parent the armor elements will be children of.</p>
+								<div class="image main"><img src="images/WizardInv7.png" alt="" /></div>
+								<p>Construction event of an item slot that sets the image, text and quantity. On click event that crafts an item.</p>
+								<hr />
+								<p> The inventory is a blueprint component of the third person character. In it are multiple functions for checking arrays, adding and removing elements from arrays. Interactable objects can add to the array when they are picked up. Crafting an item will access the resource array and create an item if there are enough resources. The UI elements access the inventory component.</p>
+								<div class="image main"><img src="images/WizardInv2.png" alt="" /></div>
+								<p>Functions and arrays in the inventory component that make up the inventory and its funcionality.</p>
+								<hr />
+								<p> Each item in the inventory array is a blueprint structure with certain data that makes it easier to implement with UI and game objects. Each of these structures is added to a data table of structures that can be accessed game objects with data table components</p>
+								<div class="image main"><img src="images/WizardInv5.png" alt="" /></div>
+								<p>Blueprint structure for items/tactical equipment. The resources and amounts are the ones necessary to craft them.</p>
+								<div class="image main"><img src="images/WizardInv3.png" alt="" /></div>
+								<p>Data table that holds blueprint structures for later use in item data components.</p>
+								<div class="image main"><img src="images/WizardInv4.png" alt="" /></div>
+								<p>Item data component in an interactable object.</p>
+
+								<hr />
+								<h2>Interaction</h2>
+								<iframe width="560" height="315" src="https://www.youtube.com/embed/qR0zDgKP-L4?si=FV5sKZFldBWU__cQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+								<p>Interaction is done by using unreal engines advanced input action to press 'E'. When E is pressed the engine will loop over overlapping actors and check if they implement the interactable interface. If they do they will break the loop and call the interact function. The interact interface will be used on many more things like doors, lights, etc... </p>
+								<div class="image main"><img src="images/WizardInt.png" alt="" /></div>
+								<p>Event used to interact with an interactable object.</p>
+								<div class="image main"><img src="images/WizardInt2.png" alt="" /></div>
+								<p>Prototype interactable object that has a sphere that can overlap with the character. Implements on interact interface and carry's out its own process.</p>
+
+								<hr />
+								<h2>Enemy AI</h2>
+								<iframe width="560" height="315" src="https://www.youtube.com/embed/wIa0fuhvIRM?si=9DEBujYfNoDKwOol" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+								<p>The basic enemy AI is created by creating a navmesh in the environment and then creating a navmeshagent to traverse the terrain. I created a basic navmeshagent and an AI controller to control its movement with a behavior tree. The behavior tree will determine its movements based on selectors that will decide which sequence to execute, and sequences that will run through different tasks for the AI to execute. In the basic enemy I created, the behavior tree will first check if the Ai is meant to be attacking or if it's on patrol. If it's attacking, it will then check if it is wielding a weapon, if not it will wield a weapon. If it is will run the chase player sequence which includes chasing the player, stopping to attack, and clearing and adding focus to the player to make the movement more realistic. If it's on patrol it will follow a spline created in the navmesh.</p>
+								<div class="image main"><img src="images/WizardAI3.png" alt="" /></div>
+								<p>The behavior tree that dictates the movement of the basic enemy AI.</p>
+								<div class="image main"><img src="images/WizardAI2.png" alt="" /></div>
+								<p>Basic Enemy AI blueprint to run animations from certain tasks in the behavior tree.</p>
+								<div class="image main"><img src="images/WizardAI4.png" alt="" /></div>
+								<p>AI controller in unreal engine that attaches a behavior tree to a controller for AI.</p>
+								<div class="image main"><img src="images/WizardAI5.png" alt="" /></div>
+								<p>Example of a task in the behavior tree. This task attacks the player.</p>
+								<div class="image main"><img src="images/WizardAI7.png" alt="" /></div>
+								<p>Example of a decorator in the behavior tree. This decorator determines if the AI has a patrol route or not. Based on the answer a selector in the behavior tree will decide what branch to go to next.</p>
+
+								<hr />
+								<h2>Menus</h2>
+								<iframe width="560" height="315" src="https://www.youtube.com/embed/wEgHJDG0Sow?si=aRhcqNNiCUBW4IDo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+								<p>Currently there is a main menu, a pause menu, and an options menu. The main menu has a single player button that will open an instance of the third person character level, a multiplayer button, an options button that will take you to the options menu, and a quit button that will close the game. The pause menu has a return to menu button, resume game, and options menu button. The options menu gives you access to change the window mode, graphics, resolution and Vsync, as well as an apply settings and return to menu button.</p>
+								<div class="image main"><img src="images/WizardMenu.png" alt="" /></div>
+								<p>Event in third person character that opens up the pause menu.</p>
+								<div class="image main"><img src="images/WizardMenu2.png" alt="" /></div>
+								<p>Logic implemented in the pause menu.</p>
+								<div class="image main"><img src="images/WizardMenu3.png" alt="" /></div>
+								<p>Logic implemented in the main menu.</p>
+								<div class="image main"><img src="images/WizardMenu4.png" alt="" /></div>
+								<p>Logic of the actual optional settings implemented in the options menu.</p>
 							</section>
 
 					</div>
